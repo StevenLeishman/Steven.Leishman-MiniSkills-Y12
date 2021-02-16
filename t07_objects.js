@@ -14,8 +14,8 @@ var ball2 = {
   posX: 350,
   posY: 350,
   diameter: 50,
-  speedX: 12,
-  speedY: 9,
+  speedX: -12,
+  speedY: -9,
 };
 
 function setup() {
