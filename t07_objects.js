@@ -20,8 +20,6 @@ var ball2 = {
 
 function setup() {
   createCanvas(400, 400);
-  
-  
 }
 
 function draw() {
@@ -68,6 +66,7 @@ function draw() {
   if(ball2.posX >= (width - (ball2.diameter / 2))){
     //reverse the speed of the ball2
     ball2.speedX = ball2.speedX * -1;
+    
   } else if(ball2.posX <= ((width-width) + (ball2.diameter / 2))){
     ball2.speedX = ball2.speedX * -1;
   }
