@@ -6,16 +6,63 @@ var ball1 = {
   posX:50,
   posY:50,
   diameter: 50,
-  speedX: 12,
-  speedY: 6,
+  speedX: 4,
+  speedY: 3,
+  display : function(){
+    fill(255,0,0);
+    ellipse(this.posX,this.posY,this.diameter);
+  },
+  movement: function(){
+    //Adjusts position of ball 1
+    this.posY = this.posY + this.speedY;
+    this.posX = this.posX + this.speedX;
+  },
+  bounce: function(){
+    let rad = this.diameter /2;
+      //checks if ball1 is off screen on X axis
+    if(this.posX >= (width - (rad))){
+      //reverse the speed of the ball1 and adjusts the position
+      this.speedX = this.speedX * -1;
+      this.posX = (width - (this.diameter / 2))
+
+    //check if it is off the top of the screen  
+    } else if(this.posX <= (this.diameter / 2)){
+      //reverses the speed and adjusts the position
+      this.speedX = this.speedX * -1;
+      this.posX = this.diameter / 2;
+    }
+
+    //checks if ball1 is off screen on Y axis
+    if(this.posY >= (height - (this.diameter / 2))){
+      //reverse the speed of the ball1 and adjusts the position
+      this.speedY = this.speedY * -1;
+      this.posY = height - this.diameter / 2;
+
+    } else if (this.posY <= this.diameter / 2 ){
+      //reverse the speed of the ball1 and adjusts the position
+      this.speedY = this.speedY * -1;
+      this.posY = this.diameter / 2;
+
+    }
+
+    },
 };
 
+//BLUE ONE
 var ball2 = {
   posX: 350,
   posY: 350,
   diameter: 100,
   speedX: -12,
   speedY: -3,
+  display: function(){
+    fill(0,0,255)
+    ellipse(this.posX,this.posY,this.diameter);
+  },
+  movement:function(){
+    ball2.posY = ball2.posY + ball2.speedY;
+    ball2.posX = ball2.posX + ball2.speedX;
+  }
 };
 
 function setup() {
@@ -31,61 +78,19 @@ function setup() {
 function draw() {
   background(200,200,200,100);
 
-  ball1Movement();
-  ball2Movement();
   
+  ball1.movement();
+  ball1.bounce();
+  ball1.display();
   //draws ball1 in red
-  fill(255,0,0);
-  ellipse(ball1.posX,ball1.posY,ball1.diameter);
+  
 
   //draws ball2 in blue
-  fill(0,0,255)
-  ellipse(ball2.posX,ball2.posY,ball2.diameter);
+  
 
-  //Adjusts position of ball 1
-  ball1.posY = ball1.posY + ball1.speedY;
-  ball1.posX = ball1.posX + ball1.speedX;
+  
   //Adjusts position of ball 2
-  ball2.posY = ball2.posY + ball2.speedY;
-  ball2.posX = ball2.posX + ball2.speedX;
-  
-
-  
-  
-
-  
-
-}
-
-
-//functionball1Movement
-//Input : 
-// Returns : 
-function ball1Movement(){
-  //checks if ball1 is off screen on X axis
-  if(ball1.posX >= (width - (ball1.diameter / 2))){
-    //reverse the speed of the ball1 and set position if off the screen
-    ball1.speedX = ball1.speedX * -1;
-    ball1.posX = (width - (ball1.diameter / 2))
-
-  //check if it is off the top of the screen  
-  } else if(ball1.posX <= (ball1.diameter / 2)){
-    //reverses the speed and adjusts the position
-    ball1.speedX = ball1.speedX * -1;
-    ball1.posX = ball1.diameter / 2;
-  }
-
-  //checks if ball1 is off screen on X axis
-  if(ball1.posY >= (height - (ball1.diameter / 2))){
-    //reverse the speed of the ball1
-    ball1.speedY = ball1.speedY * -1;
-    ball1.posY = height - ball1.diameter / 2;
-
-  } else if (ball1.posY <= ball1.diameter / 2 ){
-    ball1.speedY = ball1.speedY * -1;
-    ball1.posY = ball1.diameter / 2;
-
-  }
+ 
 
 }
 
