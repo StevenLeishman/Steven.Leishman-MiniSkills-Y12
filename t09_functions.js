@@ -97,7 +97,7 @@ var ball2 = {
 
 //SETUP
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
 
   //randomize positions of balls
   ball1.posY = random(25, 375)
