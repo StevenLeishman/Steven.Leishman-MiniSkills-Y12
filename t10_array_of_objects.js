@@ -2,7 +2,8 @@
 //
 /********************************************************/
 
-var balls = []
+var ballsArray = [];
+var velArray = [10, 9, 8, 7, 6, -6, -7, -8, -9, -10];
 
 
 //SETUP
@@ -10,15 +11,19 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
 
-  for (var i = 0; i < 10; i++) {
-    balls[i] = {
-      posX: random(0,width),
-      posY: random(0,height),
+  for (var i = 0; i < 20; i++) {
+    ballsArray[i] = {
+      posX: width / 2,
+      posY: height / 2,
       diameter: 50,
-      speedX: 4,
-      speedY: 3,
+      speedX: random(velArray),
+      speedY: random(velArray),
+      colR: random(0, 255),
+      colG: random(0, 255),
+      colB: random(0, 255),
+
       display: function () {
-        fill(255, 0, 0);
+        fill(this.colR, this.colG, this.colB);
         ellipse(this.posX, this.posY, this.diameter);
       },
       movement: function () {
@@ -58,26 +63,20 @@ function setup() {
     }
   }
 
+  ballNoSlider = createSlider(10, 150, 100);
+  ballNoSlider.position(10, 10);
 
-  //randomize positions of balls
-  /*balls.posY = random(25, 375)
-  ball1.posX = random(25, 375)
-  ball2.posY = random(25, 375)
-  ball2.posX = random(25, 375)*/
-
-  slider = createSlider(10, 150, 100);
-  slider.position(10, 10);
-  slider.style('width', '80px');
 }
 
 //DRAW
 function draw() {
   background(200, 200, 200, 100);
 
-  for (var i = 0; i<balls.length; i++){
-    balls[i].movement()
-    balls[i].bounce()
-    balls[i].display()
+
+  for (var i = 0; i < ballsArray.length; i++) {
+    ballsArray[i].movement()
+    ballsArray[i].bounce()
+    ballsArray[i].display()
   }
 }
 
