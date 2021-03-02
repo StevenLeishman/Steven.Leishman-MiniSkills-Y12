@@ -1,10 +1,19 @@
 /********************************************************/
 //
 /********************************************************/
+var canvas;
+
 function setup() {
-  createCanvas(400, 400);
+  canvas = createCanvas(400, 400);
+  canvas.mouseOver(changeCol);
+  canvas.mouseOut(changeCol);
+  canvas.mouseClicked(changeCol)
 }
 
 function draw() {
-  background(220);
+  
+}
+
+function changeCol(){
+  background(random(0,255),random(0,255),random(0,255))
 }

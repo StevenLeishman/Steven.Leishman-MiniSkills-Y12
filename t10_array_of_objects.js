@@ -1,7 +1,7 @@
 /********************************************************/
 //
 /********************************************************/
-
+const NUMBALLS = 3;
 var ballsArray = [];
 var velArray = [10, 9, 8, 7, 6, -6, -7, -8, -9, -10];
 
@@ -9,9 +9,8 @@ var velArray = [10, 9, 8, 7, 6, -6, -7, -8, -9, -10];
 //SETUP
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-
-  for (var i = 0; i < 20; i++) {
+  
+  for (var i = 0; i < NUMBALLS; i++) {  
     ballsArray[i] = {
       posX: width / 2,
       posY: height / 2,
@@ -62,16 +61,11 @@ function setup() {
       }
     }
   }
-
-  ballNoSlider = createSlider(10, 150, 100);
-  ballNoSlider.position(10, 10);
-
 }
 
 //DRAW
 function draw() {
   background(200, 200, 200, 100);
-
 
   for (var i = 0; i < ballsArray.length; i++) {
     ballsArray[i].movement()
