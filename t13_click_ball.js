@@ -3,19 +3,22 @@
 /********************************************************/
 const NUMBALLS = 6;
 var ballsArray = [];
-var velArray = [3, 4, 5, 6, -3, -4, -5, -6];
+var velArray = [3, 4,5,6, -3, -4,-5,-6];
 var levelArray = [1, 1.5, 2.5, 4]
 var score = 0;
 var scoreText;
-
+var misses = 0;
+var miss
 /*******************************************************/
 //function setup()
 //Called by p5.js once when the program runs
 /*******************************************************/
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  scoreText = createP("Score : ");
-  createBall(NUMBALLS);
+  createBall(NUMBALLS,100);
+
+  scoreText = createP("Score : " + score);
+  missesText = createP("Misses : " + misses)
 }
 
 /*******************************************************/
@@ -24,7 +27,7 @@ function setup() {
 /*******************************************************/
 function draw() {
   background(200, 200, 200, 100);
-  scoreText.html("Score : " + score)
+  changeText();
   for (var i = 0; i < ballsArray.length; i++) {
     ballsArray[i].movement()
     ballsArray[i].bounce()
@@ -58,22 +61,24 @@ function checkBallHit() {
   }
   if (ballHit == true) {
     score++;
+  } else {
+    misses++;
   }
 }
 /*******************************************************/
-//function createBall
+//function createBall()
 //Creates the balls specified when called
 //Called by: setup()
-//Input: _ballAmount
+//Input: _ballAmount,_diameter
 //Returns: N/A
 /*******************************************************/
-function createBall(_ballAmount) {
+function createBall(_ballAmount,_diameter) {
 
   for (var i = 0; i < _ballAmount; i++) {
     ballsArray[i] = {
       posX: width / 2,
       posY: height / 2,
-      diameter: 50,
+      diameter: _diameter,
       speedX: random(velArray),
       speedY: random(velArray),
       colR: random(0, 255),
@@ -118,6 +123,21 @@ function createBall(_ballAmount) {
       }
     }
   }
+}
+/*******************************************************/
+//function changeText()
+//Creates the text that shows the score and the misses
+//Called by: draw()
+//Input: N/A
+//Returns: N/A
+/*******************************************************/
+function changeText(){
+  scoreText.html("Score : " + score)
+  scoreText.position(50,50)
+  scoreText.style("font-size","25px")
+  missesText.html("Misses : " + misses)
+  missesText.position(50,75)
+  missesText.style("font-size","25px")
 }
 /*******************************************************/
 // END OF APP
